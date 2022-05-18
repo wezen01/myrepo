@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--
+    <style>
+        .class_span{
+            font-size: 20px
+        }
+        .class_form{
+            border: 1px dotted;
+            padding: 10px;
+            border-radius: 20px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 50%);
+        }
+        header {
+            position: relative;
+            text-align: center;
+            border-radius: 20px;
+            width: 500px;
+            left: 50%;
+            transform: translate(-50%, 50%);
+        }
+        h1 {
+            font-size: 50px;
+        }
+    </style>
+    -->
+    <title>Inserisci dipendente:</title>
+</head>
+<header>
+</header>
+
+<body>
+    <br><br>
+    <div class="border border-dark border-3 position-absolute bottom-10 end-50">
+        <form method="post" action="/javaSc">
+            <h2>&emsp;Inserisci dipendente</h2>
+            <label><br><br>
+                <span>Nome:</span>
+                <input type="text" name="nome" placeholder="Nome:" required pattern="[^0-9]*" />
+            </label><br><br>
+            <label>
+                <span>Cognome:</span>
+                <input type="text" name="cognome" placeholder="Cognome:" required pattern="[^0-9]*" />
+            </label><br><br>
+            <label>
+                <span>Sesso:</span><br>
+                <span class="class_span">Maschio</span><input type="radio" name="sesso" value="M" /><br>
+                <span class="class_span">Femmina</span><input type="radio" name="sesso" value="F" /><br>
+                <span class="class_span">Altro</span><input type="radio" name="sesso" value="A" checked /><br>
+            </label><br><br>
+            <label>
+                <span>Luogo di nascita:</span>
+                <input type="text" name="luogoDiNascita" placeholder="Luogo di nascita:" required pattern="[^0-9]*" />
+            </label><br><br>
+            <label>
+                <span>Data di nascita:</span>
+                <input type="date" name="dataDiNascita" placeholder="Data di nascita:" required />
+            </label><br><br>
+            <label>
+                <span> Codice Fiscale:</span>
+                <input type="text" name="codiceFiscale" placeholder="Codice Fiscale:" required
+                    pattern="[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z][0-9A-Z]{3}[A-Z]" />
+            </label><br><br>
+            <label>
+                <span>Ruolo aziendale:</span>
+                <select name="ruoloAziendale">
+                    <option value="scegli" selected disabled>Scegli:</option>
+                    <option value="Amministratore">Amministratore</option>
+                    <option value="Programmatore">Programmatore</option>
+                    <option value="Consulente">Consulente</option>
+                    <option value="RisorseUmane">Risorse umane</option>
+                    <option value="SocialMediaManager">Social Media Manager</option>
+                </select>
+            </label><br><br>
+            <label>
+                <span>Titolo di studio:</span>
+                <select name="titoloDiStudio">
+                    <option value="scegli" selected disabled>Scegli:</option>
+                    <option value="Laurea">Laurea</option>
+                    <option value="Diploma">Diploma</option>
+                </select>
+            </label><br><br>
+            <label>
+                <span>Stipendio:</span>
+                <input type="number" name="stipendio" placeholder="Stipendio:" step=".01" required
+                    pattern="[0-9]*\.[0-9]{2}" />
+            </label><br><br>
+            <label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+                    <label class="form-check-label" for="flexCheckIndeterminate">
+                      Acconsento il trattamento dei dati
+                    </label>
+                  </div>
+                    </label>
+            </label><br><br>
+            <label>
+                <button type="submit" class="btn btn-dark">SALVA</button>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <button type="reset" class="btn btn-light">RESET</button>
+            </label><br><br>
+        </form>
+    </table>
+</body>
+</html>

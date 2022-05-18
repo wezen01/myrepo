@@ -1,0 +1,42 @@
+.class_span{
+    font-size: 20px
+}
+
+.class_form{
+    border: 1px dotted;
+    padding: 10px;
+    border-radius: 20px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+header {
+    position: relative;
+    text-align: center;
+    border-radius: 20px;
+    width: 500px;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+h1 {
+    font-size: 50px;
+}
+.header_div{
+    float:right;
+}
+table{
+    /*cellspacing:10px;
+    cellpadding:10px;
+    */
+    text-align:right;
+}
+.table_dipendenti{
+    width: 100%;
+}
+td{
+    background-color: rgb(255, 255, 255);
+    border: 4px ridge rgb(0, 0, 0);
+}
+th{
+    background-color:rgb(230, 115, 0);
+}

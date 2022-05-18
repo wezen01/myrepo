@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!--/<%- css %> -->
+    
+    <title>Visualizza- All</title>
+
+    <script>
+        function conferma(id){
+            if(confirm("Sei sicuro di voler cancellare?")==true){
+                window.location.href='/cancellaSicuro?id='+id;
+            }
+        }
+    </script>
+</head>
+<!--Lista sarebbe il vettore dipendenti. Nel .js abbiamo detto che {lista:dipendenti, etichette:etichette, css:css}-->>
+<body>
+    <div class="header_div">
+        <br>
+        <p style="text-align:center;"><button style="text-align:center;" class="btn btn-dark" onclick="window.location.href='/formDipendenti'">Aggiungi</button></p>
+        <br>
+    </div>
+    <div class="container">
+        <table class="table table-dark table-striped">
+            <tr>
+                <% if(lista.length==0){ %>
+                    <p class}="p1">Nessun dipendente presente nella repository, aggiungine uno con il bottone in alto a destra</p>
+                <% } else if (mos == 0) { %>
+                <% for(var j = 0; j < etichette.length;j++){ %>
+                    <%   if(j==0 || j==6 || j==8)   { %>
+                        <%   continue; %>
+                        <% } else { %>
+                    <th><%= etichette[j]; %> </th>
+                <% } %>
+                <% } %>
+                <th>Mostra</th>
+                <th>Modifica</th>
+                <th>Cancella</th>
+            </tr>
+
+            <% for(var i = 0; i < lista.length;i++){ %>
+                <tr>
+                    <% var dipendente = lista[i]; %> 
+                    <th> <%= dipendente.nome; %> </th>
+                    <th> <%= dipendente.cognome; %> </th>
+                    <th> <%= dipendente.sesso; %> </th>
+                    <th> <%= dipendente.luogoDiNascita; %> </th>
+                    <th> <%= dipendente.dataDiNascita; %> </th>
+                    <th> <%= dipendente.ruoloAziendale; %> </th>
+                    <th> <%= dipendente.titoloDiStudio; %> </th>
+                    <td><button class="btn btn-light" onclick="window.location.href='/mostra?id=<%=dipendente.idDip%>'">Mostra</button> </td>
+                    <td><button class="btn btn-light" onclick="window.location.href='/modifica?id=<%=dipendente.idDip%>'">Modifica</button> </td>
+                    <td><button class="btn btn-light" onclick="conferma(<%=dipendente.idDip%>)">Cancella</button> </td>
+            <% } %>
+
+                        <!--
+                            
+                    <td><button class="btn btn-light" onclick="eliminaDipendente(<% dipendente[0] %>)">Cancella(inprogress)</button> </td>
+                    <td><button class="btn btn-light" onclick="window.location.href='/cancella?id=<%=dipendente[0]%>'">Cancella</button> </td>
+                    <td><button class="btn btn-light" onclick = "windows.location.href='/delete?id=<%=dipendente[0]%>'">⠀⠀•⠀⠀</button></td>-->
+                </tr>
+            
+            
+
+            <% }else if (mos == 1) { %>
+                <div class="container">
+                    <table class="table table-dark table-striped">
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Cognome</th>
+                            <th>Sesso</th>
+                            <th>Luogo di Nascita</th>
+                            <th>Data di nascita</th>
+                            <th>Codice fiscale</th>
+                            <th>Ruolo Aziendale</th>
+                            <th>Titolo di studio</th>
+                            <th>Stipendio</th>
+                        </tr>
+                            <tr>
+                                <% var dipendente = lista; %>
+                                <th> <%= dipendente.idDip; %> </th>
+                                <th> <%= dipendente.nome; %> </th>
+                                <th> <%= dipendente.cognome; %> </th>
+                                <th> <%= dipendente.sesso; %> </th>
+                                <th> <%= dipendente.luogoDiNascita; %> </th>
+                                <th> <%= dipendente.dataDiNascita; %> </th>
+                                <th> <%= dipendente.codiceFiscale; %> </th>
+                                <th> <%= dipendente.ruoloAziendale; %> </th>
+                                <th> <%= dipendente.stipendio; %> </th>
+                                <th> <%= dipendente.titoloDiStudio; %> </th>
+                                
+                            </tr>
+                            <tr>
+                                <form method="post" action="/confermamodifica?id=<%=dipendente.idDip%>">
+                                <td><input type="text" name="idDip" value="<%=dipendente.idDip%>" disabled></td>
+                                <td><input type="text" name="nome" value="<%=dipendente.nome%>"></td>
+                                <td><input type="text" name="cognome" value="<%=dipendente.cognome%>"></td>
+                                <td>Maschio
+                                    <% if(dipendente.sesso == "M") { %>
+                                        <input type="radio" name="sesso" value="M" checked>
+                                    <% }else{ %>
+                                        <input type="radio" name="sesso" value="M">
+                                    <% } %>
+                                    Femmina
+                                    <% if(dipendente.sesso == "F") { %>
+                                        <input type="radio" name="sesso" value="F" checked>
+                                    <% }else{ %>__
+                                        <input type="radio" name="sesso" value="F">
+                                    <% } %>
+                                </td>
+                                <td><input type="text" name="luogoDiNascita" value="<%=dipendente.luogoDiNascita%>"></td>
+                                <td><input type="date" name="dataDiNascita" value="<%=dipendente.dataDiNascita%>"></td>
+                                <td><input type="text" name="codiceFiscale" value="<%=dipendente.codiceFiscale%>"></td>
+                                <td><select name="ruoloAziendale">
+                                <%  if(dipendente.ruoloAziendale == "Amministratore"){ %>
+                                        <option value="Amministratore" selected>Amministratore</option>
+                                <%  }else{ %>
+                                        <option value="Amministratore">Amministratore</option>
+                                <%  } %>
+                                <%  if(dipendente.ruoloAziendale == "Programmatore"){ %>
+                                        <option value="Programmatore" selected>Programmatore</option>
+                                <%  }else{ %>
+                                        <option value="Programmatore">Programmatore</option>
+                                <%  } %>
+                                <%  if(dipendente.ruoloAziendale == "Consulente"){ %>
+                                        <option value="Consulente" selected>Consulente</option>
+                                <%  }else{ %>
+                                        <option value="Consulente">Consulente</option>
+                                <%  } %>
+                                <%  if(dipendente.ruoloAziendale == "RisorseUmane"){ %>
+                                        <option value="RisorseUmane" selected>Risorse Umane</option>
+                                <%  }else{ %>
+                                        <option value="RisorseUmane">Risorse Umane</option>
+                                <%  } %>
+                                <%  if(dipendente.ruoloAziendale == "SocialMediaManager"){ %>
+                                        <option value="SocialMediaManager" selected>Social Media Manager</option>
+                                <%  }else{ %>
+                                        <option value="SocialMediaManager">Social Media Manager</option>
+                                <%  } %>
+                                </select></td>
+                                <td><input type="text" name="stipendio" value="<%=dipendente.stipendio%>"></td>
+                                <td><select name="titoloDiStudio">
+                                    <%  if(dipendente.titoloDiStudio == "Laurea"){ %>
+                                            <option value="Laurea" selected>Laurea</option>
+                                    <%  }else{ %>
+                                            <option value="Laurea">Laurea</option>
+                                    <%  } %>
+                                    <%  if(dipendente.titoloDiStudio == "Diploma"){ %>
+                                        <option value="Diploma" selected>Diploma</option>
+                                    <%  }else{ %>
+                                        <option value="Diploma">Diploma</option>
+                                    <%  } %>
+                                    </select></td>
+                                <td><button class="btn btn-light" type="submit">Conferma Modifiche</button></td>
+                                </form>
+                            </tr>
+                    </table>
+                    </div>
+
+
+
+                <% }else if (mos == 2) { %>
+                    <% for(var j = 0; j < etichette.length;j++){ %> 
+                        <th><%= etichette[j]; %> </th>
+                    <% } %>
+                    <th>Indietro</th>
+                    <th>Modifica</th>
+                    <th>Cancella</th>
+                </tr>
+                    <tr>
+                        <% let dipendente = lista; %>
+                            <th> <%= dipendente.idDip; %> </th>
+                            <th> <%= dipendente.nome; %> </th>
+                            <th> <%= dipendente.cognome; %> </th>
+                            <th> <%= dipendente.sesso; %> </th>
+                            <th> <%= dipendente.luogoDiNascita; %> </th>
+                            <th> <%= dipendente.dataDiNascita; %> </th>
+                            <th> <%= dipendente.codiceFiscale; %> </th>
+                            <th> <%= dipendente.ruoloAziendale; %> </th>
+                            <th> <%= dipendente.stipendio; %> </th>
+                            <th> <%= dipendente.titoloDiStudio; %> </th>
+                        <td><button class="btn btn-light" onclick="window.location.href='/'">Indietro</button> </td>
+                        <td><button class="btn btn-light" onclick="window.location.href='/modifica?id=<%=dipendente.idDip%>'">Modifica</button> </td>
+                        <td><button class="btn btn-light" onclick="conferma(<%= dipendente.idDip %>)">Cancella</button> </td>
+    
+                            <!--
+                        <td><button class="btn btn-light" onclick="eliminaDipendente(<% dipendente[0] %>)">Cancella(inprogress)</button> </td>
+                        <td><button class="btn btn-light" onclick="window.location.href='/cancella?id=<%=dipendente[0]%>'">Cancella</button> </td>
+                        <td><button class="btn btn-light" onclick = "windows.location.href='/delete?id=<%=dipendente[0]%>'">⠀⠀•⠀⠀</button></td>-->
+                    </tr>
+                <%  } %> 
+
+        </table>
+    </div>
+</body>
+
+</html>
