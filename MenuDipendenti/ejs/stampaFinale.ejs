@@ -6,9 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!--/<%- css %> -->
-    
+
     <title>Visualizza- All</title>
 
     <script>
@@ -29,34 +27,36 @@
     <div class="container">
         <table class="table table-dark table-striped">
             <tr>
+
                 <% if(lista.length==0){ %>
                     <p class}="p1">Nessun dipendente presente nella repository, aggiungine uno con il bottone in alto a destra</p>
                 <% } else if (mos == 0) { %>
-                <% for(var j = 0; j < etichette.length;j++){ %>
-                    <%   if(j==0 || j==6 || j==8)   { %>
-                        <%   continue; %>
-                        <% } else { %>
-                    <th><%= etichette[j]; %> </th>
-                <% } %>
-                <% } %>
+
+                <th>ID</th>
+                <th>Cognome</th>
+                <th>Nome</th>
+                <th>Sesso</th>
+                <th>Codice fiscale</th>
+                <th>Citta</th>
+                <th>CAP</th>
                 <th>Mostra</th>
                 <th>Modifica</th>
                 <th>Cancella</th>
-            </tr>
+
 
             <% for(var i = 0; i < lista.length;i++){ %>
                 <tr>
                     <% var dipendente = lista[i]; %> 
+                    <th> <%= dipendente.id; %> </th>
                     <th> <%= dipendente.nome; %> </th>
                     <th> <%= dipendente.cognome; %> </th>
                     <th> <%= dipendente.sesso; %> </th>
-                    <th> <%= dipendente.luogoDiNascita; %> </th>
-                    <th> <%= dipendente.dataDiNascita; %> </th>
-                    <th> <%= dipendente.ruoloAziendale; %> </th>
-                    <th> <%= dipendente.titoloDiStudio; %> </th>
-                    <td><button class="btn btn-light" onclick="window.location.href='/mostra?id=<%=dipendente.idDip%>'">Mostra</button> </td>
-                    <td><button class="btn btn-light" onclick="window.location.href='/modifica?id=<%=dipendente.idDip%>'">Modifica</button> </td>
-                    <td><button class="btn btn-light" onclick="conferma(<%=dipendente.idDip%>)">Cancella</button> </td>
+                    <th> <%= dipendente.codice_fiscale; %> </th>
+                    <th> <%= dipendente.citta; %> </th>
+                    <th> <%= dipendente.cap; %> </th>
+                    <td><button class="btn btn-light" onclick="window.location.href='/mostra?id=<%=dipendente.id%>'">Mostra</button> </td>
+                    <td><button class="btn btn-light" onclick="window.location.href='/modifica?id=<%=dipendente.id%>'">Modifica</button> </td>
+                    <td><button class="btn btn-light" onclick="conferma(<%=dipendente.id%>)">Cancella</button> </td>
             <% } %>
 
                         <!--
@@ -70,36 +70,45 @@
 
             <% }else if (mos == 1) { %>
                 <div class="container">
-                    <table class="table table-dark table-striped">
+                    <table class="table table-dark table-striped" align: right>
                         <tr>
-                            <th>Id</th>
-                            <th>Nome</th>
+                            <th>ID</th>
+                            <th>Matricola</th>
                             <th>Cognome</th>
+                            <th>Nome</th>
                             <th>Sesso</th>
-                            <th>Luogo di Nascita</th>
                             <th>Data di nascita</th>
+                            <th>Luogo di nascita</th>
                             <th>Codice fiscale</th>
-                            <th>Ruolo Aziendale</th>
-                            <th>Titolo di studio</th>
-                            <th>Stipendio</th>
+                            <th>Citta</th>
+                            <th>Provincia</th>
+                            <th>CAP</th>
+                            <th>IBAN</th>
+                            <th>Data di assunzione</th>
+                            <th>Indirizzo</th>
                         </tr>
                             <tr>
-                                <% var dipendente = lista; %>
-                                <th> <%= dipendente.idDip; %> </th>
+                                <% var dipendente = lista[0]; %>
+                                <th> <%= dipendente.id; %> </th>
+                                <th> <%= dipendente.matricola; %> </th>
                                 <th> <%= dipendente.nome; %> </th>
                                 <th> <%= dipendente.cognome; %> </th>
                                 <th> <%= dipendente.sesso; %> </th>
-                                <th> <%= dipendente.luogoDiNascita; %> </th>
-                                <th> <%= dipendente.dataDiNascita; %> </th>
-                                <th> <%= dipendente.codiceFiscale; %> </th>
-                                <th> <%= dipendente.ruoloAziendale; %> </th>
-                                <th> <%= dipendente.stipendio; %> </th>
-                                <th> <%= dipendente.titoloDiStudio; %> </th>
-                                
+                                <th> <%= dipendente.data_di_nascita.toString().substring(3,15)%></th>
+                                <th> <%= dipendente.luogo_di_nascita; %> </th>
+                                <th> <%= dipendente.codice_fiscale; %> </th>
+                                <th> <%= dipendente.citta; %> </th>
+                                <th> <%= dipendente.provincia; %> </th>
+                                <th> <%= dipendente.cap; %> </th>
+                                <th> <%= dipendente.iban; %> </th>
+                                <th> <%= dipendente.data_assunzione.toString().substring(3,15)%> </th>
+                                <th> <%= dipendente.indirizzo; %> </th>
                             </tr>
                             <tr>
-                                <form method="post" action="/confermamodifica?id=<%=dipendente.idDip%>">
-                                <td><input type="text" name="idDip" value="<%=dipendente.idDip%>" disabled></td>
+
+                                <form method="post" action="/confermamodifica?id=<%=dipendente.id%>">
+                                <td><input type="text" name="id" value="<%=dipendente.id%>" disabled></td>
+                                <td><input type="text" name="matricola" value="<%=dipendente.matricola%>"></td>
                                 <td><input type="text" name="nome" value="<%=dipendente.nome%>"></td>
                                 <td><input type="text" name="cognome" value="<%=dipendente.cognome%>"></td>
                                 <td>Maschio
@@ -111,53 +120,19 @@
                                     Femmina
                                     <% if(dipendente.sesso == "F") { %>
                                         <input type="radio" name="sesso" value="F" checked>
-                                    <% }else{ %>__
+                                    <% }else{ %>
                                         <input type="radio" name="sesso" value="F">
                                     <% } %>
                                 </td>
-                                <td><input type="text" name="luogoDiNascita" value="<%=dipendente.luogoDiNascita%>"></td>
-                                <td><input type="date" name="dataDiNascita" value="<%=dipendente.dataDiNascita%>"></td>
-                                <td><input type="text" name="codiceFiscale" value="<%=dipendente.codiceFiscale%>"></td>
-                                <td><select name="ruoloAziendale">
-                                <%  if(dipendente.ruoloAziendale == "Amministratore"){ %>
-                                        <option value="Amministratore" selected>Amministratore</option>
-                                <%  }else{ %>
-                                        <option value="Amministratore">Amministratore</option>
-                                <%  } %>
-                                <%  if(dipendente.ruoloAziendale == "Programmatore"){ %>
-                                        <option value="Programmatore" selected>Programmatore</option>
-                                <%  }else{ %>
-                                        <option value="Programmatore">Programmatore</option>
-                                <%  } %>
-                                <%  if(dipendente.ruoloAziendale == "Consulente"){ %>
-                                        <option value="Consulente" selected>Consulente</option>
-                                <%  }else{ %>
-                                        <option value="Consulente">Consulente</option>
-                                <%  } %>
-                                <%  if(dipendente.ruoloAziendale == "RisorseUmane"){ %>
-                                        <option value="RisorseUmane" selected>Risorse Umane</option>
-                                <%  }else{ %>
-                                        <option value="RisorseUmane">Risorse Umane</option>
-                                <%  } %>
-                                <%  if(dipendente.ruoloAziendale == "SocialMediaManager"){ %>
-                                        <option value="SocialMediaManager" selected>Social Media Manager</option>
-                                <%  }else{ %>
-                                        <option value="SocialMediaManager">Social Media Manager</option>
-                                <%  } %>
-                                </select></td>
-                                <td><input type="text" name="stipendio" value="<%=dipendente.stipendio%>"></td>
-                                <td><select name="titoloDiStudio">
-                                    <%  if(dipendente.titoloDiStudio == "Laurea"){ %>
-                                            <option value="Laurea" selected>Laurea</option>
-                                    <%  }else{ %>
-                                            <option value="Laurea">Laurea</option>
-                                    <%  } %>
-                                    <%  if(dipendente.titoloDiStudio == "Diploma"){ %>
-                                        <option value="Diploma" selected>Diploma</option>
-                                    <%  }else{ %>
-                                        <option value="Diploma">Diploma</option>
-                                    <%  } %>
-                                    </select></td>
+                                <td><input type="date" name="data_di_nascita" value="<%=dipendente.data_di_nascita%>"></td>
+                                <td><input type="text" name="luogo_di_nascita" value="<%=dipendente.luogo_di_nascita%>"></td>
+                                <td><input type="text" name="codice_fiscale" value="<%=dipendente.codice_fiscale%>"></td>
+                                <td><input type="text" name="citta" value="<%=dipendente.citta%>"></td>
+                                <td><input type="text" name="provincia" value="<%=dipendente.provincia%>"></td>
+                                <td><input type="text" name="cap" value="<%=dipendente.cap%>"></td>
+                                <td><input type="text" name="iban" value="<%=dipendente.iban%>"></td>
+                                <td><input type="date" name="data_assunzione" value="<%=dipendente.data_assunzione%>"></td>
+                                <td><input type="text" name="indirizzo" value="<%=dipendente.indirizzo%>"></td>
                                 <td><button class="btn btn-light" type="submit">Conferma Modifiche</button></td>
                                 </form>
                             </tr>
@@ -165,8 +140,19 @@
                     </div>
 
 
-
                 <% }else if (mos == 2) { %>
+                    <%  console.log("AAA"+lista[0]);%>
+                    <th> <%= lista[0].id; %> </th>
+                    <th> <%= lista[0].nome; %> </th>
+                    <th> <%= lista[0].cognome; %> </th>
+                    <th> <%= lista[0].sesso; %> </th>
+                    <th> <%= lista[0].codice_fiscale; %> </th>
+                    <th> <%= lista[0].citta; %> </th>
+                    <th> <%= lista[0].cap; %> </th>
+                    <td><button class="btn btn-light" onclick="window.location.href='/'">Indietro</button> </td>
+                    <td><button class="btn btn-light" onclick="window.location.href='/modifica?id=<%=lista[0].id%>'">Modifica</button> </td>
+                    <td><button class="btn btn-light" onclick="conferma(<%= lista[0].id %>)">Cancella</button> </td>
+                    <!--
                     <% for(var j = 0; j < etichette.length;j++){ %> 
                         <th><%= etichette[j]; %> </th>
                     <% } %>
@@ -176,7 +162,7 @@
                 </tr>
                     <tr>
                         <% let dipendente = lista; %>
-                            <th> <%= dipendente.idDip; %> </th>
+                            <th> <%= dipendente.id; %> </th>
                             <th> <%= dipendente.nome; %> </th>
                             <th> <%= dipendente.cognome; %> </th>
                             <th> <%= dipendente.sesso; %> </th>
@@ -188,8 +174,8 @@
                             <th> <%= dipendente.titoloDiStudio; %> </th>
                         <td><button class="btn btn-light" onclick="window.location.href='/'">Indietro</button> </td>
                         <td><button class="btn btn-light" onclick="window.location.href='/modifica?id=<%=dipendente.idDip%>'">Modifica</button> </td>
-                        <td><button class="btn btn-light" onclick="conferma(<%= dipendente.idDip %>)">Cancella</button> </td>
-    
+                        <td><button class="btn btn-light" onclick="conferma(<%= dipendente.id %>)">Cancella</button> </td>
+    -->
                             <!--
                         <td><button class="btn btn-light" onclick="eliminaDipendente(<% dipendente[0] %>)">Cancella(inprogress)</button> </td>
                         <td><button class="btn btn-light" onclick="window.location.href='/cancella?id=<%=dipendente[0]%>'">Cancella</button> </td>

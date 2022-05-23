@@ -1,7 +1,9 @@
 var express = require('express');
+var cors = require('cors');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var path = require('path');
+const { setPriority } = require('os');
 var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 var cache ={};
@@ -106,6 +108,7 @@ app.get('/cancella',urlencodedParser,function(req, res) {
 
 app.get('/cancellaSicuro',urlencodedParser,function(req, res) {
     mos=0;
+    var campi = "";
     var css = fs.readFileSync('css/style.css','utf8');
     let idUtenteCancellare = req.query.id;
     let idCancellazione = 0;
